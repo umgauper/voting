@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('votingApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -21,6 +21,10 @@ angular.module('votingApp')
           $scope.errors.other = err.message;
         });
       }
+    };
+
+    $scope.loginOauth = function(provider) {
+      $window.location.href = '/auth/' + provider;
     };
 
   });
