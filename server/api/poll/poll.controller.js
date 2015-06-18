@@ -12,7 +12,7 @@ exports.index = function(req, res) {
 };
 
 // Get a single poll
-exports.show = function(req, res) {
+exports.show = function(req, res) { //But we want to find the poll based on the username and the poll name ...
   Poll.findById(req.params.id, function (err, poll) {
     if(err) { return handleError(res, err); }
     if(!poll) { return res.send(404); }

@@ -1,5 +1,5 @@
 <div ng-controller="NewpollCtrl"><span>
-    <h2>New Poll {{ 2 + 2 }}</h2></span>
+    <h2>New Poll</h2></span>
   <form ng-submit="addPoll()" class="ng-pristine ng-invalid ng-invalid-required">
     <div class="form-group">
       <label for="name">Name your poll.</label>
@@ -12,7 +12,6 @@
     <div class="form-buttons">
       <button type="button" ng-click="addOption()" class="btn btn-default">More Options</button>
       <button type="submit" class="btn btn-success" disabled="disabled" ng-disabled="poll.$invalid">Submit</button>
-      <!--<input class="btn btn-success" type="submit" disabled="disabled" ng-disabled="poll.$invalid"/>-->
     </div>
   </form>
 </div>
