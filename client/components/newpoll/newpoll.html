@@ -1,0 +1,18 @@
+<div ng-controller="NewpollCtrl"><span>
+    <h2>New Poll {{ 2 + 2 }}</h2></span>
+  <form ng-submit="addPoll()" class="ng-pristine ng-invalid ng-invalid-required">
+    <div class="form-group">
+      <label for="name">Name your poll.</label>
+      <input id="name" ng-model="pollName" novalidate="" name="poll" placeholder="What is your favorite brand?" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>Options</label>
+      <input ng-repeat="n in placeholders track by $index" ng-model="pollOptions[$index]" placeholder="{{placeholders[$index]}}" class="form-control ng-untouched ng-scope"/>
+    </div>
+    <div class="form-buttons">
+      <button type="button" ng-click="addOption()" class="btn btn-default">More Options</button>
+      <button type="submit" class="btn btn-success" disabled="disabled" ng-disabled="poll.$invalid">Submit</button>
+      <!--<input class="btn btn-success" type="submit" disabled="disabled" ng-disabled="poll.$invalid"/>-->
+    </div>
+  </form>
+</div>

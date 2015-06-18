@@ -40,7 +40,11 @@ var all = {
       }
     }
   },
-
+  twitter: {
+    clientID:     process.env.TWITTER_ID ||  'K1QpfFQGciOVNdHJKyvbuFQ5E',
+    clientSecret: process.env.TWITTER_SECRET || '2XudNSxUMsy6lMucZLUMWZRaXQNWYoLUQQkI6d2iEP6XIpOBqP',
+    callbackURL:  (process.env.DOMAIN || 'http://localhost:9000') + '/auth/twitter/callback'
+  }
 };
 
 // Export the config object based on the NODE_ENV
