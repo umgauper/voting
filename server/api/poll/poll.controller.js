@@ -20,6 +20,14 @@ exports.show = function(req, res) { //But we want to find the poll based on the 
   });
 };
 
+exports.showPoll = function(req, res) {
+  var user_name = req.params.user_name;
+  var poll_name = req.params.poll_name;
+  Poll.find({user_name: user_name, poll_name: poll_name}, function(err, poll) {
+    return res.json(poll);
+  });
+};
+
 // Creates a new poll in the DB.
 exports.create = function(req, res) {
   Poll.create(req.body, function(err, poll) {

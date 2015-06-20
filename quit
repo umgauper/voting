@@ -1,0 +1,61 @@
+[33mcommit 6c7ba176c8f8cff2b0f1c9754fa3fa83f3a7aed9[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Wed Jun 17 23:00:57 2015 -0700
+
+    set up poll form to post to poll collection in database
+
+[33mcommit 6630d95426e3be13b700454d9a7aaa596252dd2c[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Wed Jun 17 22:59:37 2015 -0700
+
+    updated Tasks list
+
+[33mcommit 5f7109f3d627ead8ab3efe970617238d9fe9ff8a[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Wed Jun 17 20:30:45 2015 -0700
+
+    added some functions experimenting with /api/things
+
+[33mcommit df06b7f25d04710067f1d8cac78f79db1d91f3ae[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Wed Jun 17 20:28:56 2015 -0700
+
+    added blue section to login & signup template
+
+[33mcommit 6e53af205a98713ad038ab0ee860c72809b7e0c8[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Wed Jun 17 20:27:06 2015 -0700
+
+    added /data
+
+[33mcommit 1030b72893361021f915c8b1216dea75a4c432db[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Thu Jun 4 10:33:36 2015 -0700
+
+    set up twitter authentication
+
+[33mcommit 87795d6cbb0ff142623b715fa931ea8744cb0051[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Tue Jun 2 17:55:22 2015 -0700
+
+    updated package.json
+
+[33mcommit a70ef2b4b29fc97f36df36bcf2013c36aa55db8c[m
+Merge: 38ffd4a 4fe6389
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Tue Jun 2 12:45:17 2015 -0700
+
+    'merged readme'
+    Merge branch 'master' of https://github.com/umgauper/voting
+
+[33mcommit 4fe63898074177b095ed247f88746a71b77a36d0[m
+Author: umgauper <umgauper@gmail.com>
+Date:   Tue Jun 2 12:39:48 2015 -0700
+
+    Initial commit
+
+[33mcommit 38ffd4a5ff3481142c8b6c2a2a3106a0139daa4d[m
+Author: Una Gauper <umgauper@gmail.com>
+Date:   Tue Jun 2 12:38:45 2015 -0700
+
+    initial commit
