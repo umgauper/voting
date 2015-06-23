@@ -6,9 +6,9 @@
     <div class="col-lg-4">
       <form ng-submit="addVote()">
         <ul>
-          <li ng-repeat="item in votePollOptions">
+          <li ng-repeat="item in votePollOptions track by $index">
             {{item}}
-            <input type="radio" name="option" ng-value="'{{item}}'"/>
+            <input type="radio" name="option" value="{{$index}}"/>
           </li>
 
         </ul>

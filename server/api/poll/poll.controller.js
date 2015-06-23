@@ -37,18 +37,29 @@ exports.create = function(req, res) {
 };
 
 // Updates an existing poll in the DB.
-exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Poll.findById(req.params.id, function (err, poll) {
-    if (err) { return handleError(res, err); }
-    if(!poll) { return res.send(404); }
-    var updated = _.merge(poll, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, poll);
-    });
-  });
+exports.update = function(req, res) { // {$set: {poll_results: [0, 1]}}, WORKS but {$inc: {'poll_results[0]': 1} DOES NOT
+  //if(req.body._id) { delete req.body._id; }'
+  var update = {$inc: {}};
+  var field = 'poll_results.' + req.params.val;
+  update.$inc[field] = 1;
+
+  Poll.update({user_name: req.params.user_name, poll_name: req.params.poll_name}, update,
+    function (err) { //THIS AIN't Working!!
+      console.log(err);
+    }
+  );
 };
+  //Poll.find({user_name: req.params.user_name, poll_name: req.params.poll_name},  function (err, poll) {
+  //  if (err) { return handleError(res, err); }
+  //  if(!poll) { return res.send(404); }
+  //  poll.poll_results = req.params.poll_results; //but will this actually update the database?, no it does not
+    //var updated = _.merge(poll, req.body);
+    //updated.save(function (err) {
+    //  if (err) { return handleError(res, err); }
+    //  return res.json(200, poll);
+    //});
+
+
 
 // Deletes a poll from the DB.
 exports.destroy = function(req, res) {

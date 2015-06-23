@@ -11,8 +11,8 @@
     <div ng-show="isLoggedIn()">
       <h1>Dashboard</h1>
       <p class="lead">What would you like to do today?</p>
-      <button class="btn-lg btn-success" ng-click="loadNewPoll()"> New Poll</button>
-      <button class="btn-lg btn-primary"> My Polls</button>
+      <button class="btn btn-lg btn-success" ng-click="loadNewPoll()"> New Poll</button>
+      <button class="btn btn-lg btn-primary"> My Polls</button>
     </div>
   </div>
 </header>
@@ -24,11 +24,15 @@
     <div ng-show="isLoggedIn()">
     <div ng-include="&quot;components/newpoll/newpoll.html&quot;" class="col-lg-12"></div>
     <div ng-show="page==='newPollPosted'">
-      <h2>Congratulations!</h2>
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4 poll-posted">
+        <h2>Congratulations!</h2>
       <p class="lead">Your poll has been posted to <a href="{{url}}">{{url}}</a></p>
+      </div>
+      <div class="col-lg-4"></div>
     </div>
     <div ng-include="'components/vote/vote.html'"></div>
-    </div>g
+    </div>
   </div>
 </div>
 <footer class="footer">

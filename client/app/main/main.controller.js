@@ -26,17 +26,15 @@ angular.module('votingApp')
     };
 
     if(/[^\/].*(?=\/)/.test($location.path())) {
-      var paths = $location.path();                         //TODO: fix issue when one poll's already clicked and you make new poll, new url is tacked on to first poll's url!!
-                                                            // clicking new poll clears location?
-      var user_name = paths.match(/[^\/].*(?=\/)/);        //parse out username and path!
+      var paths = $location.path();
+      var user_name = paths.match(/[^\/].*(?=\/)/);        //parse out username and path
       var poll_name = paths.match(/.\/.*(?=$)/);
-      console.log(poll_name);
       poll_name = poll_name[0].substr(2, poll_name[0].length);
       $http.get('/api/polls/' + user_name + '/' + poll_name).success(function(data) {
-        console.log(data);
         $scope.votePollName = data[0].poll_name;
         $scope.votePollCreator = data[0].user_name;
         $scope.votePollOptions = data[0].poll_options;
+        $scope.votePollResults = data[0].poll_results;
       });
       $scope.page = 'vote';
       paths = '/';
@@ -53,7 +51,11 @@ angular.module('votingApp')
         arr.push(0);
       }
       return arr;
-    }
+    };
 
-
+    $scope.addVote = function() {
+      var val = $("input[type='radio']:checked").val();
+      val = Number(val);
+      $http.put('api/polls/' + $scope.votePollCreator + '/' + $scope.votePollName + '/' + val);
+    };
   });
