@@ -39,9 +39,10 @@ exports.create = function(req, res) {
 // Updates an existing poll in the DB.
 exports.update = function(req, res) { // {$set: {poll_results: [0, 1]}}, WORKS but {$inc: {'poll_results[0]': 1} DOES NOT
   //if(req.body._id) { delete req.body._id; }'
-  var update = {$inc: {}};
+  var update = {$push: {}, $inc: {}};
   var field = 'poll_results.' + req.params.val;
   update.$inc[field] = 1;
+  update.$push['voted_users'] = req.params.current_user;
 
   Poll.update({user_name: req.params.user_name, poll_name: req.params.poll_name}, update,
     function (err) { //THIS AIN't Working!!
