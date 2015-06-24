@@ -30,7 +30,7 @@ angular.module('votingApp')
       var user_name = paths.match(/[^\/].*(?=\/)/);        //parse out username and path
       var poll_name = paths.match(/.\/.*(?=$)/);
       poll_name = poll_name[0].substr(2, poll_name[0].length);
-      $http.get('/api/polls/' + user_name + '/' + poll_name).success(function(data) {
+      $http.get('/api/polls/' + user_name + '/' + poll_name).success(function(data) { //TODO: errror catching for if data[0] undefined; if undefined show poll does not exist page!
         $scope.votePollName = data[0].poll_name;
         $scope.votePollCreator = data[0].user_name;
         $scope.votePollOptions = data[0].poll_options;
