@@ -3,9 +3,9 @@
 var _ = require('lodash');
 var Poll = require('./poll.model');
 
-// Get list of polls
+// Get list of polls by user
 exports.index = function(req, res) {
-  Poll.find(function (err, polls) {
+  Poll.find({user_name: req.params.user_name}, function (err, polls) {
     if(err) { return handleError(res, err); }
     return res.json(200, polls);
   });
@@ -45,7 +45,7 @@ exports.update = function(req, res) { // {$set: {poll_results: [0, 1]}}, WORKS b
   update.$push['voted_users'] = req.params.current_user;
 
   Poll.update({user_name: req.params.user_name, poll_name: req.params.poll_name}, update,
-    function (err) { //THIS AIN't Working!!
+    function (err) {
       console.log(err);
     }
   );
@@ -64,15 +64,19 @@ exports.update = function(req, res) { // {$set: {poll_results: [0, 1]}}, WORKS b
 
 // Deletes a poll from the DB.
 exports.destroy = function(req, res) {
-  Poll.findById(req.params.id, function (err, poll) {
-    if(err) { return handleError(res, err); }
-    if(!poll) { return res.send(404); }
-    poll.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.send(204);
-    });
+  Poll.remove({poll_name: req.params.poll_name}, function(err, poll) {
+    if (err) { return handleError(res, err); }
   });
 };
+//  Poll.find({poll_name: req.params.poll_name}, function (err, poll) {
+//    if(err) { return handleError(res, err); }
+//    if(!poll) { return res.send(404); }
+//    poll.remove(function(err) {
+//      if(err) { return handleError(res, err); }
+//      return res.send(204);
+//    });
+//  });
+//};
 
 function handleError(res, err) {
   return res.send(500, err);

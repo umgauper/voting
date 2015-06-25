@@ -17,7 +17,7 @@ angular.module('votingApp')
   .config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
     ChartJsProvider.setOptions({
-      colours: ['#FF5252', '#FF8A80'],
+      //colours: ['#EDEDED', '#EDEDED'],
       responsive: false
     });
     // Configure all line charts

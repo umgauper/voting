@@ -3,20 +3,19 @@
     <div class="col-lg-4"></div>
     <div class="col-lg-4 new-poll">
     <h2>New Poll</h2>
-    <form  ng-submit="addPoll()" class="ng-pristine ng-invalid ng-invalid-required">
+    <form  name="newpoll" ng-submit="addPoll()" novalidate>
       <div class="form-group">
         <label for="name">Name your poll.</label>
-        <input id="name" ng-model="pollName.name" novalidate="" name="poll" placeholder="What is your favorite brand?" class="form-control ng-untouched ng-scope"/>
-        {{pollName.name}}
+        <input id="name" ng-model="pollName.name" novalidate="" name="poll" placeholder="What is your favorite brand?" class="form-control" required/>
       </div>
       <div class="form-group">
         <label>Options</label>
-        <input ng-repeat="n in placeholders track by $index" ng-model="pollOptions[$index]" placeholder="{{placeholders[$index]}}" class="form-control ng-untouched ng-scope"/>
+        <input ng-repeat="n in placeholders track by $index" ng-model="pollOptions[$index]" placeholder="{{placeholders[$index]}}" class="form-control" required/>
       </div>
       <div class="form-buttons" width="350px">
         <button type="button" ng-click="addOption()" class="btn btn-default">More Options</button>
         <br>
-        <button type="submit" class="btn btn-success" disabled="disabled" ng-disabled="poll.$invalid">Submit</button>
+        <button type="submit" class="btn btn-success" ng-disabled="newpoll.$invalid">Submit</button>
       </div>
     </form>
     </div>

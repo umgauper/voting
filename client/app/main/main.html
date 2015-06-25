@@ -1,20 +1,20 @@
 <div ng-include="&quot;components/navbar/navbar.html&quot;"></div>
 <header id="banner" class="hero-unit">
-  <!--<div class="container">-->
-    <!--<div ng-hide="isLoggedIn()">-->
-      <!--<h1>VotePlex</h1>-->
-      <!--<p class="lead">Create custom polls with live results.</p>-->
-      <!--<a href="/signup">-->
-        <!--<button class="btn-lg btn-success">Sign Up</button>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<div ng-show="isLoggedIn()">-->
-      <!--<h1>Dashboard</h1>-->
-      <!--<p class="lead">What would you like to do today?</p>-->
-      <!--<button class="btn btn-lg btn-success" ng-click="loadNewPoll()"> New Poll</button>-->
-      <!--<button class="btn btn-lg btn-primary"> My Polls</button>-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="container">
+    <div ng-hide="isLoggedIn()">
+      <h1>VotePlex</h1>
+      <p class="lead">Create custom polls with live results.</p>
+      <a href="/signup">
+        <button class="btn-lg btn-success">Sign Up</button>
+      </a>
+    </div>
+    <div ng-show="isLoggedIn()">
+      <h1>Dashboard</h1>
+      <p class="lead">What would you like to do today?</p>
+      <button class="btn btn-lg btn-success" ng-click="loadNewPoll()"> New Poll</button>
+      <button class="btn btn-lg btn-primary" ng-click="loadAllPolls()"> My Polls</button>
+    </div>
+  </div>
 </header>
 <div class="container">
   <div class="row">
@@ -27,13 +27,14 @@
       <div class="col-lg-4"></div>
       <div class="col-lg-4 poll-posted">
         <h2>Congratulations!</h2>
-      <p class="lead">Your poll has been posted to <a href="{{url}}">{{url}}</a></p>
+      <p class="lead">Your poll has been posted to <a ng-click="getPollData()" href="{{url}}">{{url}}</a></p>
       </div>
       <div class="col-lg-4"></div>
     </div>
     <div ng-include="'components/vote/vote.html'"></div>
     </div>
     <div ng-include="'components/results/results.html'"></div>
+    <div ng-include="'components/allpolls/allpolls.html'"></div>
   </div>
 </div>
 <footer class="footer">
