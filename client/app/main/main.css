@@ -68,3 +68,21 @@
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
+
+.fa {
+  font-size: 5em;
+}
+
+.fa-bolt {
+  color: #FAEA73;
+}
+
+.fa-globe {
+  color: #5CB85C;
+}
+
+.fa-facebook {
+  color: #4393B9;
+}
+
+/* TODO: add button styles that apply to all buttons to make them look like VotePlex buttons */
