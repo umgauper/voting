@@ -2,7 +2,7 @@
   <div class="col-lg-4"></div>
   <div class="col-lg-4 allpolls">
     <ul class="list-group">
-      <li class="list-group-item" id="{{poll.poll_name.split(' ')[0]}}" ng-repeat="poll in polls" ng-model="poll.poll_name" ng-click="getPollData(poll.user_name, poll.poll_name)">  {{poll.poll_name}}
+      <li class="list-group-item" id="{{poll.poll_name.split(' ')[0]}}" ng-repeat="poll in polls" ng-click="loadPoll(poll.user_name, poll.poll_name, 'results')">  {{poll.poll_name}}
         <button class="btn" ng-click="delete(poll.poll_name); $event.stopPropagation()">Delete</button>
       </li>
     </ul>

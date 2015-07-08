@@ -1,7 +1,7 @@
-<div ng-show="page==='results'">
+<div ng-hide="page !=='results'">
   <div class="col-lg-4"></div>
   <div class="col-lg-4 graph">
-    <h1> {{votePollName}}</h1>
+    <h1>{{pollName}}</h1>
     <canvas id="bar" class="chart chart-bar" data="data" labels="labels">
     </canvas>
   </div>

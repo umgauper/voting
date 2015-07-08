@@ -37,30 +37,21 @@ exports.create = function(req, res) {
 };
 
 // Updates an existing poll in the DB.
-exports.update = function(req, res) { // {$set: {poll_results: [0, 1]}}, WORKS but {$inc: {'poll_results[0]': 1} DOES NOT
-  //if(req.body._id) { delete req.body._id; }'
-  var update = {$push: {}, $inc: {}};
+exports.update = function(req, res) {
+  var update = {/*$push: {},*/ $inc: {}};
   var field = 'poll_results.' + req.params.val;
   update.$inc[field] = 1;
-  update.$push['voted_users'] = req.params.current_user;
-
-  Poll.update({user_name: req.params.user_name, poll_name: req.params.poll_name}, update,
-    function (err) {
-      console.log(err);
+  //update.$push['voted_users'] = req.params.current_user;
+  var query = {_id: req.params.id};
+  //{$inc: {'poll_results.1': 1}} //this doesn't work in place of update...hmph
+  Poll.update(query, update, function(err, num, doc) {
+    if(err) console.log(err);
+    else {
+      console.log('Updated ' + doc);
+      res.json(201, doc);
     }
-  );
+  });
 };
-  //Poll.find({user_name: req.params.user_name, poll_name: req.params.poll_name},  function (err, poll) {
-  //  if (err) { return handleError(res, err); }
-  //  if(!poll) { return res.send(404); }
-  //  poll.poll_results = req.params.poll_results; //but will this actually update the database?, no it does not
-    //var updated = _.merge(poll, req.body);
-    //updated.save(function (err) {
-    //  if (err) { return handleError(res, err); }
-    //  return res.json(200, poll);
-    //});
-
-
 
 // Deletes a poll from the DB.
 exports.destroy = function(req, res) {

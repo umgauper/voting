@@ -1,13 +1,13 @@
 <div ng-show="page==='vote'">
     <div class="col-lg-4">
-    <h1 class="">{{votePollName}}?</h1>
-    <p class="lead">by {{votePollCreator}}</p>
+    <h1 class="">{{pollName}}?</h1>
+    <p class="lead">by {{pollCreator}}</p>
     </div>
     <div class="col-lg-4">
       <form ng-submit="addVote()">
         <ul>
-          <li ng-repeat="item in votePollOptions track by $index">
-            {{item}}
+          <li ng-repeat="option in pollOptions track by $index">
+            {{option}}
             <input type="radio" name="option" value="{{$index}}"/>
           </li>
 
