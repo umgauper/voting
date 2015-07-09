@@ -2,12 +2,8 @@
 
 angular.module('votingApp')
 
-  //need separate user_names for logged in user vs. poll creator!!
-  // logged in user = $scope.currentUser ... use camelCase for any $scope variables
-  //poll creator should be user_name...but sometimes we have to store that ... riiight?
+  .controller('MainCtrl', function ($scope, $http, $location, Auth) {
 
-
-  .controller('MainCtrl', function ($scope, $http, $location, $route, Auth) {
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.page = 'newPoll';
     $scope.placeholders = ['Coke','Pepsi'];
@@ -35,29 +31,28 @@ angular.module('votingApp')
         poll_results: $scope.makeArr($scope.pollOptions.length)
       }).success(function() {
         console.log('New poll posted');
+        //reset the form and models
         $scope.page = 'newPollPosted';
+        $scope.pollName = {name: ''};
+        $scope.pollOptions = [];
+
       }); //TODO: Add error catching.
 
       //URL for new poll
       $scope.url = '';
       $scope.url = window.location + Auth.getCurrentUser().name + '/' + $scope.pollName;
     };
+
     $scope.addOption = function() {
       $scope.placeholders.push('New Option');
     };
 
     $scope.loadPoll = function(user_name, poll_name, page) {
-      ////Load result page or vote page
+      //Load result page or vote page
       $http.get('/api/polls/' + user_name + '/' + poll_name).success(function(data, status) { //TODO: error catching for if data[0] undefined; if undefined show poll does not exist page!
 
-
-        //$scope.data = [[33, 33, 33]];
-        //$scope.labels = ['data', 'was', 'got'];// ... THIS WORKS...so... is the problem with getting the data...
-                                               //but also doesn't work until second vote submit so... what gives?
         if(data[0]) {
-
         //for graph
-
           console.log(data[0].poll_results);
           console.log(data[0].poll_options);
           var arr = [];
@@ -71,9 +66,10 @@ angular.module('votingApp')
           $scope.pollOptions = data[0].poll_options;
           $scope._id = data[0]._id;
         }
+
         $scope.page = page;
         if(page === 'results') {
-          $('.results').css({display: "block", visibility: "visible", backgroundColor: "pink"});
+          $('.results').css({display: "block", visibility: "visible", backgroundColor: "pink"})
         }
 
 
