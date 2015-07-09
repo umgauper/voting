@@ -15,8 +15,11 @@
 
 .home div {
   text-align: center;
-  margin: 25px 0 -65px 0;
-  padding: 0 10px;
+  padding: 0 5px;
+}
+
+div.home {
+  margin: 50px 0 -200px 0;
 }
 
 .fa-bolt {
@@ -77,10 +80,11 @@ div#twitter i:hover {
   color: #333333;
 }
 
-/* newPoll page styles */
+/* newpoll page styles */
 .new-poll form {
   margin-bottom: 20px;
 }
+
 .new-poll, .poll-posted {
   text-align: center;
 }
@@ -94,7 +98,7 @@ div#twitter i:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: middle !important;
-  margin-left: 90px;
+  margin: 0 0 10px 90px !important;
 }
 
 /* allPolls page styles */
