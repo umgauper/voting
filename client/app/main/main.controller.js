@@ -31,8 +31,8 @@ angular.module('votingApp')
         poll_results: $scope.makeArr($scope.pollOptions.length)
       }).success(function() {
         console.log('New poll posted');
-        //reset the form and models
         $scope.page = 'newPollPosted';
+        //reset the form and models
         $scope.pollName = {name: ''};
         $scope.pollOptions = [];
 
@@ -78,26 +78,23 @@ angular.module('votingApp')
           console.log(status);
         });
     };
-    //TODO: Randomly after first new poll submitted, not able to enter text in poll name input field. WTH??!
-    //TODO: graph not working until page refreshed, not working first time i think do something diff. so page doesn't load until get is finished?
-    //TODO: Do workaround somehow that makes a collapsed results div...so it's in dom but not taking up space???? invisible? or something....so
-    // //TODO: cont.. give results div a tiny height so it isn't shown at first? or will that mess up drawing of chart? we'll see...
-    // for the resutls div instead of ng-show or ng-hide, use CSS visibility: hidden;
-    //WORKS IF
-    //BECAUSE get is requesting BEFORE new poll is finished posting!!
- //possible to watch when something is typed into search bar?
-    if(/[^\/].*(?=\/)/.test($location.path())) { //TODO: explore better way to get poll data and show poll route when a poll is requested? $location.watch?
+
+    if(/[^\/].*(?=\/)/.test($location.path())) { // load poll when /user_name/poll_name is requested
+      $scope.page = '';
       var paths = $location.path();
       var user_name = paths.match(/[^\/].*(?=\/)/);        //parse out username and path
       var poll_name = paths.match(/.\/.*(?=$)/);
       poll_name = poll_name[0].substr(2, poll_name[0].length);
       $scope.loadPoll(user_name, poll_name, 'vote');
       }
-//Alternatively, watch for changes to url or get requests to /user_name/poll_name???
 
     $scope.loadNewPoll = function() {
       $('.results').css("display", "none");
       $scope.page = 'newPoll';
+      //reset the form and models
+      $scope.pollName = {name: ''};
+      $scope.pollOptions = [];
+
       $location.path('/');
     };
 
@@ -129,7 +126,7 @@ angular.module('votingApp')
       });
     };
 
-    $scope.delete = function(poll) {
+    $scope.deletePoll = function(poll) {
       //TODO: why is this reloading to 'results'?!?!?! weird lol what
       $http.delete('api/polls/' + poll).success(function() {
         var id = poll;
