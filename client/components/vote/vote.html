@@ -1,21 +1,22 @@
-<div ng-show="page==='vote'">
+<div ng-show="page==='vote'" class="vote">
     <div class="col-lg-4">
     <h1 class="">{{pollName}}?</h1>
     <p class="lead">by {{pollCreator}}</p>
     </div>
     <div class="col-lg-4">
       <form ng-submit="addVote()">
-        <ul>
-          <li ng-repeat="option in pollOptions track by $index">
-            {{option}}
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="option in pollOptions track by $index">
             <input type="radio" name="option" value="{{$index}}"/>
+            {{option}}
           </li>
 
         </ul>
         <br>
-        <button type="submit"> Submit </button>
+        <button class="btn btn-lg btn-success vote" type="submit"> Vote! </button>
       </form>
     </div>
-    <div class="col-log-4">
+    <div class="col-lg-4">
+      <p id="comments">Sorry, no comments yet.</p>
     </div>
 </div>

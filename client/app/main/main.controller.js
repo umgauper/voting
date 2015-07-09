@@ -70,11 +70,7 @@ angular.module('votingApp')
           $scope.pollCreator = data[0].user_name;
           $scope.pollOptions = data[0].poll_options;
           $scope._id = data[0]._id;
-
-          //window.refresh() force the page to refresh after getting the data...it's not working the first time because charts are configuring B4 get request,
-          // it works second time because the new data and labels have been already stored in scope... I think...
         }
-        //window.location.reload();
         $scope.page = page;
         if(page === 'results') {
           $('.results').css({display: "block", visibility: "visible", backgroundColor: "pink"});
@@ -85,15 +81,6 @@ angular.module('votingApp')
         .error(function(data, status) {
           console.log(status);
         });
-
-      //setTimeout(function() { Doesn't work either...
-
-
-      //  console.log('loading');
-      //}, 10000);
-      //$scope.page = page;
-      //console.log('Getting poll data for ' + poll_name);
-      //paths = '/';
     };
     //TODO: Randomly after first new poll submitted, not able to enter text in poll name input field. WTH??!
     //TODO: graph not working until page refreshed, not working first time i think do something diff. so page doesn't load until get is finished?
@@ -103,7 +90,7 @@ angular.module('votingApp')
     //WORKS IF
     //BECAUSE get is requesting BEFORE new poll is finished posting!!
  //possible to watch when something is typed into search bar?
-    if(/[^\/].*(?=\/)/.test($location.path())) { //What's a better way to get poll data and show poll route when a poll is requested?
+    if(/[^\/].*(?=\/)/.test($location.path())) { //TODO: explore better way to get poll data and show poll route when a poll is requested? $location.watch?
       var paths = $location.path();
       var user_name = paths.match(/[^\/].*(?=\/)/);        //parse out username and path
       var poll_name = paths.match(/.\/.*(?=$)/);

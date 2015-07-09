@@ -1,22 +1,17 @@
-.results {
-  visibility: hidden;
+.fa {
+  font-size: 5em;
 }
 
-
-
-.thing-form {
-    margin: 20px 0;
+.fa-bolt {
+  color: #FAEA73;
 }
 
-#banner {
-    border-bottom: none;
-    margin-top: -20px;
+.fa-globe {
+  color: #5CB85C;
 }
 
-#banner h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+.fa-facebook {
+  color: #4393B9;
 }
 
 .hero-unit {
@@ -35,6 +30,8 @@
     border-top: 1px solid #E5E5E5;
 }
 
+/* newPoll page styles */
+
 .new-poll, .poll-posted {
   text-align: center;
 }
@@ -51,9 +48,7 @@
   margin-left: 90px;
 }
 
-.graph h1, .graph canvas {
-  text-align: center;
-}
+/* allPolls page styles */
 
 .allpolls li button {
   float: right;
@@ -74,20 +69,45 @@
   border-top-right-radius: 4px;
 }
 
-.fa {
-  font-size: 5em;
+/* vote page styles */
+
+button.vote {
+  width: 200px;
 }
 
-.fa-bolt {
-  color: #FAEA73;
+.vote h1 {
+  margin: 20px 0 10px 0 !important;
 }
 
-.fa-globe {
-  color: #5CB85C;
+.vote ul, .vote p#comments  {
+  margin: 20px 0 0 0 !important;
 }
 
-.fa-facebook {
-  color: #4393B9;
+.vote input[type=radio] {
+  margin-right: 20px;
 }
 
-/* TODO: add button styles that apply to all buttons to make them look like VotePlex buttons */
+.vote div:first-child {
+  text-align: center;
+}
+
+/* results page styles */
+
+.results {
+  visibility: hidden;
+}
+
+.graph h1, .graph canvas {
+  text-align: center;
+}
+
+#banner {
+  border-bottom: none;
+  margin-top: -20px;
+}
+
+#banner h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
