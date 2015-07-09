@@ -13,6 +13,12 @@
   font-size: 5em;
 }
 
+.home div {
+  text-align: center;
+  margin: 25px 0 -65px 0;
+  padding: 0 10px;
+}
+
 .fa-bolt {
   color: #FAEA73;
 }
