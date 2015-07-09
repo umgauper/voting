@@ -57,6 +57,7 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   Poll.remove({poll_name: req.params.poll_name}, function(err, poll) {
     if (err) { return handleError(res, err); }
+    return res.send(204);
   });
 };
 //  Poll.find({poll_name: req.params.poll_name}, function (err, poll) {

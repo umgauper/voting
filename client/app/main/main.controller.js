@@ -7,7 +7,7 @@ angular.module('votingApp')
   //poll creator should be user_name...but sometimes we have to store that ... riiight?
 
 
-  .controller('MainCtrl', function ($scope, $http, $location, Auth) {
+  .controller('MainCtrl', function ($scope, $http, $location, $route, Auth) {
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.page = 'newPoll';
     $scope.placeholders = ['Coke','Pepsi'];
@@ -18,7 +18,6 @@ angular.module('votingApp')
     $scope.data = [[100, 100, 100]];
     $scope.labels = ['this', 'is', 'a', 'test'];
     //TODO: when new poll is submitted, clear form input fields.
-    //TODO: splice out non-[a-zA-Z0-9]   characters from poll names! bcuz that's what VotePlex does
     $scope.addPoll = function() { //TODO: Add error catching/don't submit form if there is no current user!
       console.log('Submitting poll for ' + Auth.getCurrentUser().name + '...');
 
@@ -49,12 +48,18 @@ angular.module('votingApp')
 
     $scope.loadPoll = function(user_name, poll_name, page) {
       ////Load result page or vote page
-      $scope.page = page;
-
       $http.get('/api/polls/' + user_name + '/' + poll_name).success(function(data, status) { //TODO: error catching for if data[0] undefined; if undefined show poll does not exist page!
 
+
+        //$scope.data = [[33, 33, 33]];
+        //$scope.labels = ['data', 'was', 'got'];// ... THIS WORKS...so... is the problem with getting the data...
+                                               //but also doesn't work until second vote submit so... what gives?
         if(data[0]) {
+
         //for graph
+
+          console.log(data[0].poll_results);
+          console.log(data[0].poll_options);
           var arr = [];
           arr.push(data[0].poll_results);
           $scope.data = arr;
@@ -65,16 +70,37 @@ angular.module('votingApp')
           $scope.pollCreator = data[0].user_name;
           $scope.pollOptions = data[0].poll_options;
           $scope._id = data[0]._id;
-          console.log('This poll id is ' + $scope._id);
+
+          //window.refresh() force the page to refresh after getting the data...it's not working the first time because charts are configuring B4 get request,
+          // it works second time because the new data and labels have been already stored in scope... I think...
         }
+        //window.location.reload();
+        $scope.page = page;
+        if(page === 'results') {
+          $('.results').css({display: "block", visibility: "visible", backgroundColor: "pink"});
+        }
+
+
       })
         .error(function(data, status) {
           console.log(status);
         });
+
+      //setTimeout(function() { Doesn't work either...
+
+
+      //  console.log('loading');
+      //}, 10000);
+      //$scope.page = page;
       //console.log('Getting poll data for ' + poll_name);
       //paths = '/';
     };
+    //TODO: Randomly after first new poll submitted, not able to enter text in poll name input field. WTH??!
     //TODO: graph not working until page refreshed, not working first time i think do something diff. so page doesn't load until get is finished?
+    //TODO: Do workaround somehow that makes a collapsed results div...so it's in dom but not taking up space???? invisible? or something....so
+    // //TODO: cont.. give results div a tiny height so it isn't shown at first? or will that mess up drawing of chart? we'll see...
+    // for the resutls div instead of ng-show or ng-hide, use CSS visibility: hidden;
+    //WORKS IF
     //BECAUSE get is requesting BEFORE new poll is finished posting!!
  //possible to watch when something is typed into search bar?
     if(/[^\/].*(?=\/)/.test($location.path())) { //What's a better way to get poll data and show poll route when a poll is requested?
@@ -84,6 +110,7 @@ angular.module('votingApp')
       poll_name = poll_name[0].substr(2, poll_name[0].length);
       $scope.loadPoll(user_name, poll_name, 'vote');
       }
+//Alternatively, watch for changes to url or get requests to /user_name/poll_name???
 
     $scope.loadNewPoll = function() {
       $scope.page = 'newPoll';
@@ -110,19 +137,20 @@ angular.module('votingApp')
       );
     };
 
-
-
     $scope.loadAllPolls = function() {
       $http.get('api/polls/' + Auth.getCurrentUser().name).success(function(data) {
         $scope.polls = data;
+        $('.results').css("display", "none");
         $scope.page = 'allPolls';
       });
     };
 
     $scope.delete = function(poll) {
-      //var id = poll;
-      //id = '#' + id.split(' ')[0];
-      //$(id).remove();
-      $http.delete('api/polls/' + poll).success($scope.loadAllPolls());
+      //TODO: why is this reloading to 'results'?!?!?! weird lol what
+      $http.delete('api/polls/' + poll).success(function() {
+        var id = poll;
+        id = '#' + id.split(' ')[0];
+        $(id).remove();
+      });
     };
   });
