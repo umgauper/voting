@@ -1,4 +1,15 @@
-.fa {
+#banner {
+  border-bottom: none;
+  margin-top: -20px;
+}
+
+#banner h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.home .fa {
   font-size: 5em;
 }
 
@@ -14,6 +25,7 @@
   color: #4393B9;
 }
 
+
 .hero-unit {
     position: relative;
     padding: 30px 15px;
@@ -28,6 +40,31 @@
     padding: 30px 0;
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
+}
+
+.login form, .signup {
+  margin-top: 20px;
+}
+
+form button { /*THis might mess up other styles, check */
+  width: 200px !important;
+}
+
+div#twitter, div#login {
+  display: inline-block !important;
+  margin: 20px 50px 0 0;
+}
+
+div#twitter a{
+  border: 1px solid #0271BF;
+}
+
+div#twitter i {
+  color: white;
+}
+
+div#twitter i:hover {
+  color: #333333;
 }
 
 /* newPoll page styles */
@@ -99,15 +136,4 @@ button.vote {
 
 .graph h1, .graph canvas {
   text-align: center;
-}
-
-#banner {
-  border-bottom: none;
-  margin-top: -20px;
-}
-
-#banner h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
 }

@@ -100,6 +100,7 @@ angular.module('votingApp')
 //Alternatively, watch for changes to url or get requests to /user_name/poll_name???
 
     $scope.loadNewPoll = function() {
+      $('.results').css("display", "none");
       $scope.page = 'newPoll';
       $location.path('/');
     };

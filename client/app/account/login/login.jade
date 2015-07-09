@@ -6,22 +6,8 @@ header#banner.hero-unit
     p.lead Create custom polls with live results.
 
 .container
-  .row
+  .row.login
     .col-sm-12
-      h1 Login
-      p
-        | Accounts are reset on server restart from
-        code server/config/seed.js
-        | . Default account is
-        code test@test.com
-        | /
-        code test
-      p
-        | Admin account is
-        code admin@admin.com
-        | /
-        code admin
-
     .col-sm-12
       form.form(name='form', ng-submit='login(form)', novalidate='')
         .form-group
@@ -36,13 +22,11 @@ header#banner.hero-unit
             | Please enter your email and password.
           p.help-block {{ errors.other }}
 
-        div
-          button.btn.btn-inverse.btn-lg.btn-login(type='submit')
+        div#login
+          button.btn.btn-success(type='submit')
             | Login
           = ' '
-          a.btn.btn-default.btn-lg.btn-register(href='/signup')
-            | Register
-        div
+        div#twitter
           a.btn.btn-twitter(href="", ng-click="loginOauth('twitter')")
             i.fa.fa-twitter Connect with Twitter
   hr
