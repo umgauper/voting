@@ -172,3 +172,9 @@ button.vote {
 .graph h1, .graph canvas {
   text-align: center;
 }
+
+canvas {
+  width: 100% !important;
+  max-width: 500px;
+  height: auto !important;
+}
