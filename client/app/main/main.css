@@ -18,6 +18,19 @@
   padding: 0 5px;
 }
 
+.home div:nth-child(1) {
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
+.home div:nth-child(2) {
+  /*margin-right: 1px;*/
+}
+
+.home div:nth-child(3) {
+  padding-left: 25px;
+}
+
 div.home {
   margin: 50px 0 -200px 0;
 }
@@ -145,6 +158,10 @@ button.vote {
 }
 
 /* results page styles */
+
+.col-centered {
+  margin: 0 auto !important;
+}
 
 .results {
   visibility: hidden;
